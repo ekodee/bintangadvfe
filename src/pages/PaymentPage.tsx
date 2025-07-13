@@ -23,7 +23,6 @@ export default function PaymentPage() {
   const [formErrors, setFormErrors] = useState<z.ZodIssue[]>([]);
 
   const [loading, setLoading] = useState(true);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
 
@@ -156,7 +155,6 @@ export default function PaymentPage() {
         if (!orderTrxId) {
           console.error("Error: order_trx_id is undefined");
         }
-        setSuccessMessage("Bukti pembayaran berhasil diupload!");
         localStorage.removeItem("cart");
         localStorage.removeItem("orderData");
         setFormData({ proof: null, product_ids: [] });
