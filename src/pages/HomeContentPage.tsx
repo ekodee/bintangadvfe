@@ -281,7 +281,7 @@ export default function Homepage() {
             <div className="fade-in">
               <div className="bg-gradient-to-br from-blue-100 to-red-100 rounded-3xl h-96 flex items-center justify-center">
                 <img
-                  src="src\assets\images\profile.jpeg"
+                  src="/assets/images/photos/profile.jpeg"
                   alt="Tentang Bintang Advertising"
                   className="h-full w-full object-cover object-top rounded-3xl shadow-lg"
                 />
