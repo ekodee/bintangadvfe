@@ -420,10 +420,9 @@ export default function Homepage() {
 
               <div className="space-y-4">
                 {[
-                  { icon: "📍", text: "Jl. Merdeka No. 123, Jakarta Pusat" },
-                  { icon: "📞", text: "(021) 123-4567" },
+                  { icon: "📍", text: "Jl. kongsi 1 no 9, RT 06 RW 01 Bencongan, Kelapa Dua, Tangerang" },
                   { icon: "📱", text: "0812-3456-7890" },
-                  { icon: "✉️", text: "info@bintangadvertising.co.id" },
+                  { icon: "✉️", text: "msafiiekokuncoro1@gmail.com" },
                   { icon: "🕒", text: "Senin - Sabtu: 08:00 - 20:00" },
                   { icon: "🕒", text: "Minggu: 09:00 - 17:00" },
                 ].map((contact, index) => (

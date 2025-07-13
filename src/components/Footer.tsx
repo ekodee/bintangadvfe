@@ -107,7 +107,7 @@ export default function Footer() {
                 <div className="flex items-center space-x-3 mb-4">
                  <div className="relative w-32 h-12 lg:w-40 lg:h-16 group-hover:scale-105 transition-all duration-500">
                     <img
-                      src="../public/assets/images/logos/logo_transparent.svg" // ganti dengan path file logo kamu
+                      src="/assets/images/logos/logo_transparent.png" // ganti dengan path file logo kamu
                       alt="Logo Bintang Adv"
                       className="w-full h-full object-contain"
                     />
@@ -255,8 +255,7 @@ export default function Footer() {
                       />
                     </svg>
                     <div>
-                      <p>Jl. Kongsi No.1</p>
-                      <p>Tangerang</p>
+                      <p>Jl. kongsi 1 no 9, RT 06 RW 01 Bencongan, Kelapa Dua, Tangerang</p>
                     </div>
                   </div>
                 
