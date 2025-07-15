@@ -66,7 +66,7 @@ export default function SingleRowFloatingNavbar() {
             <Link to="/" className="flex items-center group">
               <div className="relative w-32 h-12 lg:w-40 lg:h-16 group-hover:scale-105 transition-all duration-500">
                 <img
-                  src="../public/assets/images/logos/logo_transparent.svg" // ganti dengan path file logo kamu
+                  src="/assets/images/logos/logo_transparent.png" // ganti dengan path file logo kamu
                   alt="Logo Bintang Adv"
                   className="w-full h-full object-contain"
                 />
