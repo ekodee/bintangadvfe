@@ -383,7 +383,7 @@ export default function Homepage() {
                 </div>
               ))}
             </div>
-            
+
             {/* Tombol Panduan Lengkap */}
             <div className="text-center">
               <button
@@ -420,7 +420,10 @@ export default function Homepage() {
 
               <div className="space-y-4">
                 {[
-                  { icon: "📍", text: "Jl. kongsi 1 no 9, RT 06 RW 01 Bencongan, Kelapa Dua, Tangerang" },
+                  {
+                    icon: "📍",
+                    text: "Jl. kongsi 1 no 9, RT 06 RW 01 Bencongan, Kelapa Dua, Tangerang",
+                  },
                   { icon: "📱", text: "0812-3456-7890" },
                   { icon: "✉️", text: "msafiiekokuncoro1@gmail.com" },
                   { icon: "🕒", text: "Senin - Sabtu: 08:00 - 20:00" },
@@ -435,16 +438,22 @@ export default function Homepage() {
             </div>
 
             <div className="fade-in">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl h-80 flex flex-col items-center justify-center text-center">
-                <div className="text-4xl mb-4">🗺️</div>
-                <h4 className="text-xl font-semibold mb-2">Interactive Map</h4>
-                <p className="opacity-75">Google Maps Integration</p>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl h-80 overflow-hidden">
+                <iframe
+                  title="Google Maps"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.354554622775!2d106.60387357414798!3d-6.216887293771069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ff94b742b9af%3A0xfb5e4f1e125920f5!2sBintang%20Advertising!5e0!3m2!1sid!2sid!4v1752743437586!5m2!1sid!2sid"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
             </div>
           </div>
         </div>
       </section>
-
     </div>
   );
 }

@@ -221,13 +221,7 @@ export default function BrowsePage() {
                 Temukan layanan percetakan yang Anda cari
               </p>
             </div>
-            <Link
-              to="/categories"
-              className="hidden sm:flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium"
-            >
-              <span>Lihat Semua</span>
-              <span>→</span>
-            </Link>
+            
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-6">
@@ -282,12 +276,7 @@ export default function BrowsePage() {
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                 <span>Sedang populer</span>
               </div>
-              <Link
-                to="/popular"
-                className="text-blue-600 hover:text-blue-700 font-medium"
-              >
-                Lihat Semua →
-              </Link>
+        
             </div>
           </div>
 
@@ -398,12 +387,7 @@ export default function BrowsePage() {
                 Layanan percetakan terdepan dan inovasi terbaru
               </p>
             </div>
-            <Link
-              to="/new"
-              className="text-blue-600 hover:text-blue-700 font-medium"
-            >
-              Lihat Semua →
-            </Link>
+
           </div>
 
           {/* Daftar Mobile */}

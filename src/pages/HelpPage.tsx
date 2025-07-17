@@ -38,27 +38,6 @@ export default function HelpPage() {
           <p className="text-xl text-slate-600 mb-8">
             Temukan jawaban atas pertanyaan Anda seputar layanan percetakan kami
           </p>
-          {/* Search Box */}
-          <div className="relative max-w-md mx-auto">
-            <input
-              type="text"
-              placeholder="Cari bantuan..."
-              className="w-full px-4 py-3 pl-12 bg-white rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all"
-            />
-            <svg
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </div>
         </div>
       </section>
       {/* Quick Links */}
@@ -162,20 +141,6 @@ export default function HelpPage() {
                 <span className="font-semibold text-slate-800">
                   Jenis file apa saja yang bisa dicetak?
                 </span>
-                <svg
-                  className="w-5 h-5 text-slate-600 transform transition-transform"
-                  id="icon-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
               </button>
               <div className="accordion-content px-6 pb-4" id="content-1">
                 <p className="text-slate-600">
@@ -194,20 +159,6 @@ export default function HelpPage() {
                 <span className="font-semibold text-slate-800">
                   Berapa lama waktu pengerjaan?
                 </span>
-                <svg
-                  className="w-5 h-5 text-slate-600 transform transition-transform"
-                  id="icon-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
               </button>
               <div className="accordion-content px-6 pb-4" id="content-2">
                 <p className="text-slate-600">
@@ -229,20 +180,6 @@ export default function HelpPage() {
                 <span className="font-semibold text-slate-800">
                   Bagaimana cara melakukan pembayaran?
                 </span>
-                <svg
-                  className="w-5 h-5 text-slate-600 transform transition-transform"
-                  id="icon-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
               </button>
               <div className="accordion-content px-6 pb-4" id="content-3">
                 <p className="text-slate-600">
@@ -261,20 +198,6 @@ export default function HelpPage() {
                 <span className="font-semibold text-slate-800">
                   Apakah ada layanan antar?
                 </span>
-                <svg
-                  className="w-5 h-5 text-slate-600 transform transition-transform"
-                  id="icon-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
               </button>
               <div className="accordion-content px-6 pb-4" id="content-4">
                 <p className="text-slate-600">
@@ -293,20 +216,6 @@ export default function HelpPage() {
                 <span className="font-semibold text-slate-800">
                   Bagaimana jika hasil cetak tidak sesuai?
                 </span>
-                <svg
-                  className="w-5 h-5 text-slate-600 transform transition-transform"
-                  id="icon-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
               </button>
               <div className="accordion-content px-6 pb-4" id="content-5">
                 <p className="text-slate-600">
@@ -332,7 +241,8 @@ export default function HelpPage() {
               Kami
             </span>
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* WhatsApp */}
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center hover:shadow-lg transition-all duration-300 hover:scale-105">
               <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -347,38 +257,10 @@ export default function HelpPage() {
               <h3 className="font-semibold text-slate-800 mb-2">WhatsApp</h3>
               <p className="text-slate-600 mb-3">Chat langsung dengan kami</p>
               <a
-                href="https://wa.me/6281234567890"
+                href="https://wa.me/6285743275318"
                 className="inline-block px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
               >
                 Chat Sekarang
-              </a>
-            </div>
-            {/* Phone */}
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center hover:shadow-lg transition-all duration-300 hover:scale-105">
-              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-8 h-8 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
-              </div>
-              <h3 className="font-semibold text-slate-800 mb-2">Telepon</h3>
-              <p className="text-slate-600 mb-3">
-                Senin - Sabtu, 08:00 - 18:00
-              </p>
-              <a
-                href="tel:+6221234567890"
-                className="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                (021) 234-567-890
               </a>
             </div>
             {/* Email */}
@@ -401,7 +283,7 @@ export default function HelpPage() {
               <h3 className="font-semibold text-slate-800 mb-2">Email</h3>
               <p className="text-slate-600 mb-3">Kirim pertanyaan Anda</p>
               <a
-                href="mailto:info@bintangadvertsing.com"
+                href="mailto:msafiiekokuncoro1@gmail.com"
                 className="inline-block px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
               >
                 Kirim Email
@@ -433,12 +315,13 @@ export default function HelpPage() {
               <h3 className="font-semibold text-slate-800 mb-2">Alamat</h3>
               <p className="text-slate-600 mb-3">Kunjungi toko kami</p>
               <a
-                href="https://maps.google.com"
+                href="https://maps.app.goo.gl/DNP47xmWGADWq6Kr7"
                 className="inline-block px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
               >
                 Lihat Lokasi
               </a>
             </div>
+          </div>
           </div>
         </div>
       </section>
