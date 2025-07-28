@@ -4,6 +4,23 @@ import { CartItem, Product } from "../types/type";
 import apiClient from "../services/apiServices";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+const minOrderMap: Record<string, number> = {
+    "Banner Custom": 2,
+    "Banner Promosi Produk": 1,
+    "Buku Yasin Soft Cover": 10,
+    "Buku Yasin Hard Cover": 5,
+    "Neon Box": 1,
+    "Kartu Nama Standard": 50,
+    "Kartu Nama Premium": 50,
+    "X-Banner": 2,
+    "Stempel Oval": 1,
+    "Stempel Kotak": 1,
+    "Sticker Label Bulat": 100,
+    "Sticker Cutting Custom": 50,
+    "Undangan Custom Tanpa Amplop": 50,
+    "Undangan Custom dengan Amplop": 50,
+  };
+
 export default function DetailsPage() {
   const { slug } = useParams<{ slug: string }>();
   const [product, setProduct] = useState<Product | null>(null);
@@ -51,12 +68,19 @@ export default function DetailsPage() {
     apiClient
       .get(`/product/${slug}`)
       .then((response) => {
-        setProduct(response.data.data);
-        setMainImage(response.data.data.thumbnail);
+        const data = response.data.data;
+        // Tambahkan min_order dari mapping manual
+        data.min_order = minOrderMap[data.name] || 1;
+        setProduct(data); // gunakan data yang sudah dimodifikasi
+        setMainImage(data.thumbnail);
         setLoading(false);
       })
       .catch((error) => {
-        setError(error);
+        setError(
+          error?.response?.data?.message ||
+            error?.message ||
+            "Terjadi kesalahan saat memuat produk."
+        );
         setLoading(false);
       });
   }, [slug]);
@@ -66,8 +90,13 @@ export default function DetailsPage() {
       <div className="flex min-h-screen items-center justify-center bg-gray-50">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-xl text-gray-700 font-medium">Memuat detail produk percetakan...</p>
-          <p className="text-sm text-gray-500 mt-2">Harap tunggu sebentar, kami sedang menyiapkan yang terbaik untuk Anda</p>
+          <p className="text-xl text-gray-700 font-medium">
+            Memuat detail produk percetakan...
+          </p>
+          <p className="text-sm text-gray-500 mt-2">
+            Harap tunggu sebentar, kami sedang menyiapkan yang terbaik untuk
+            Anda
+          </p>
         </div>
       </div>
     );
@@ -78,8 +107,18 @@ export default function DetailsPage() {
       <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-indigo-50">
         <div className="text-center">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
-            <svg className="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <svg
+              className="h-6 w-6 text-red-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
             </svg>
           </div>
           <p className="text-red-600">Error loading product: {error}</p>
@@ -93,8 +132,18 @@ export default function DetailsPage() {
       <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-indigo-50">
         <div className="text-center">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
-            <svg className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            <svg
+              className="h-6 w-6 text-gray-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
             </svg>
           </div>
           <p className="text-gray-600">Product not found</p>
@@ -122,11 +171,23 @@ export default function DetailsPage() {
           <div className="flex h-16 items-center justify-between">
             <Link to="/products" className="group flex items-center space-x-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 transition-all group-hover:border-indigo-300 group-hover:bg-indigo-50">
-                <svg className="h-5 w-5 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <svg
+                  className="h-5 w-5 text-gray-600 group-hover:text-indigo-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
                 </svg>
               </div>
-              <span className="hidden text-sm font-medium text-gray-600 group-hover:text-indigo-600 sm:block">Back</span>
+              <span className="hidden text-sm font-medium text-gray-600 group-hover:text-indigo-600 sm:block">
+                Back
+              </span>
             </Link>
 
             <div className="text-center">
@@ -134,10 +195,22 @@ export default function DetailsPage() {
             </div>
 
             <Link to="/cart" className="group flex items-center space-x-2">
-              <span className="hidden text-sm font-medium text-gray-600 group-hover:text-indigo-600 sm:block">Cart</span>
+              <span className="hidden text-sm font-medium text-gray-600 group-hover:text-indigo-600 sm:block">
+                Cart
+              </span>
               <div className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 transition-all group-hover:border-indigo-300 group-hover:bg-indigo-50">
-                <svg className="h-5 w-5 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m-2.4 0L3 3zM7 13L5.4 7M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H19M17 21a2 2 0 100-4 2 2 0 000 4zM9 21a2 2 0 100-4 2 2 0 000 4z" />
+                <svg
+                  className="h-5 w-5 text-gray-600 group-hover:text-indigo-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4m-2.4 0L3 3zM7 13L5.4 7M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H19M17 21a2 2 0 100-4 2 2 0 000 4zM9 21a2 2 0 100-4 2 2 0 000 4z"
+                  />
                 </svg>
               </div>
             </Link>
@@ -205,13 +278,22 @@ export default function DetailsPage() {
             <div className="space-y-4">
               {product.is_popular ? (
                 <div className="flex items-center space-x-2 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-500 px-4 py-3 text-white">
-                  <svg className="h-6 w-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                  <svg
+                    className="h-6 w-6 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                   </svg>
                   <span className="text-sm font-semibold">Produk Populer</span>
                   <div className="ml-auto flex space-x-1">
                     {[...Array(3)].map((_, i) => (
-                      <svg key={i} className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                      <svg
+                        key={i}
+                        className="h-4 w-4"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                       </svg>
                     ))}
@@ -231,7 +313,11 @@ export default function DetailsPage() {
                   </h1>
                 </div>
                 <div className="flex items-center space-x-1 rounded-2xl bg-indigo-600 px-3 py-2">
-                  <svg className="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <svg
+                    className="h-4 w-4 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                   </svg>
                   <span className="text-sm font-bold text-white">4.8</span>
@@ -240,8 +326,28 @@ export default function DetailsPage() {
 
               <div className="text-3xl font-bold text-gray-900 sm:text-4xl">
                 {formatCurrency(product.price)}
-                <span className="text-base font-normal text-gray-500">/quantity</span>
+                <span className="text-base font-normal text-gray-500">
+                  /quantity
+                </span>
               </div>
+            </div>
+
+            <div className="mt-2">
+              <span className="text-sm font-medium text-gray-700">
+                Stok tersedia:{" "}
+                <span
+                  className={
+                    product.stock > 0 ? "text-green-600" : "text-red-600"
+                  }
+                >
+                  {product.stock > 0 ? product.stock : "Habis"}
+                </span>
+              </span>
+              <br />
+              <span className="text-sm text-gray-700">
+                Minimal pembelian:{" "}
+                <span className="font-semibold">{product.min_order}</span>
+              </span>
             </div>
 
             {/* Product Features Grid */}
@@ -249,12 +355,24 @@ export default function DetailsPage() {
               <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-100">
                 <div className="flex items-center space-x-3">
                   <div className="rounded-xl bg-blue-100 p-2">
-                    <svg className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                    <svg
+                      className="h-6 w-6 text-blue-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                      />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-gray-900">{product.category.name}</p>
+                    <p className="text-sm font-semibold text-gray-900">
+                      {product.category.name}
+                    </p>
                     <p className="text-xs text-gray-500">Category</p>
                   </div>
                 </div>
@@ -263,12 +381,24 @@ export default function DetailsPage() {
               <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-100">
                 <div className="flex items-center space-x-3">
                   <div className="rounded-xl bg-green-100 p-2">
-                    <svg className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                      className="h-6 w-6 text-green-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-gray-900">Guarantee</p>
+                    <p className="text-sm font-semibold text-gray-900">
+                      Guarantee
+                    </p>
                     <p className="text-xs text-gray-500">Bahan Terbaik</p>
                   </div>
                 </div>
@@ -277,8 +407,18 @@ export default function DetailsPage() {
               <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-100">
                 <div className="flex items-center space-x-3">
                   <div className="rounded-xl bg-amber-100 p-2">
-                    <svg className="h-6 w-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                      className="h-6 w-6 text-amber-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
                     </svg>
                   </div>
                   <div>
@@ -291,12 +431,24 @@ export default function DetailsPage() {
               <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-100">
                 <div className="flex items-center space-x-3">
                   <div className="rounded-xl bg-purple-100 p-2">
-                    <svg className="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    <svg
+                      className="h-6 w-6 text-purple-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-gray-900">Top Service</p>
+                    <p className="text-sm font-semibold text-gray-900">
+                      Top Service
+                    </p>
                     <p className="text-xs text-gray-500">Pelayanan Terbaik</p>
                   </div>
                 </div>
@@ -312,17 +464,42 @@ export default function DetailsPage() {
               >
                 {isAdding ? (
                   <>
-                    <svg className="h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    <svg
+                      className="h-5 w-5 animate-spin"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
                     </svg>
                     <span className="font-semibold">Adding...</span>
                   </>
                 ) : (
                   <>
                     <span className="font-semibold">Tambah Ke Keranjang</span>
-                    <svg className="h-5 w-5 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m-2.4 0L3 3zM7 13L5.4 7M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H19M17 21a2 2 0 100-4 2 2 0 000 4zM9 21a2 2 0 100-4 2 2 0 000 4z" />
+                    <svg
+                      className="h-5 w-5 transition-transform group-hover:scale-110"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4m-2.4 0L3 3zM7 13L5.4 7M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H19M17 21a2 2 0 100-4 2 2 0 000 4zM9 21a2 2 0 100-4 2 2 0 000 4z"
+                      />
                     </svg>
                   </>
                 )}
@@ -335,14 +512,18 @@ export default function DetailsPage() {
         <div className="mt-12 space-y-12">
           {/* About Product */}
           <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-gray-100 sm:p-8">
-            <h2 className="mb-4 text-2xl font-bold text-gray-900">Tentang Produk</h2>
+            <h2 className="mb-4 text-2xl font-bold text-gray-900">
+              Tentang Produk
+            </h2>
             <p className="leading-relaxed text-gray-700">{product.about}</p>
           </section>
 
           {/* Reviews */}
           {product.testimonials.length > 0 && (
             <section className="space-y-6">
-              <h2 className="text-2xl font-bold text-gray-900">Customer Reviews</h2>
+              <h2 className="text-2xl font-bold text-gray-900">
+                Customer Reviews
+              </h2>
               <div className="overflow-x-auto">
                 <Swiper
                   spaceBetween={16}
@@ -357,7 +538,9 @@ export default function DetailsPage() {
                             <svg
                               key={i}
                               className={`h-4 w-4 ${
-                                i< parseInt(testimonial.rating) ? "text-yellow-400" : "text-gray-300"
+                                i < parseInt(testimonial.rating)
+                                  ? "text-yellow-400"
+                                  : "text-gray-300"
                               }`}
                               fill="currentColor"
                               viewBox="0 0 24 24"
@@ -376,8 +559,12 @@ export default function DetailsPage() {
                             className="h-10 w-10 rounded-full object-cover"
                           />
                           <div>
-                            <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                            <p className="text-sm text-gray-500">{testimonial.rating}/5 rating</p>
+                            <p className="font-semibold text-gray-900">
+                              {testimonial.name}
+                            </p>
+                            <p className="text-sm text-gray-500">
+                              {testimonial.rating}/5 rating
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -391,14 +578,26 @@ export default function DetailsPage() {
           {/* Natural Benefits */}
           {product.features.length > 0 && (
             <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-gray-100 sm:p-8">
-              <h2 className="mb-6 text-2xl font-bold text-gray-900">Keunggulan Produk</h2>
+              <h2 className="mb-6 text-2xl font-bold text-gray-900">
+                Keunggulan Produk
+              </h2>
               <div className="space-y-4">
                 {product.features.map((feature, index) => (
                   <div key={feature.id}>
                     <div className="flex items-center space-x-4">
                       <div className="rounded-xl bg-green-100 p-2">
-                        <svg className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        <svg
+                          className="h-6 w-6 text-green-600"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
                         </svg>
                       </div>
                       <p className="text-gray-700">{feature.name}</p>
@@ -418,8 +617,22 @@ export default function DetailsPage() {
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-t border-gray-200 lg:hidden">
         <div className="mx-auto flex max-w-7xl items-center justify-between p-4">
           <div className="space-y-1">
-            <p className="text-xl font-bold text-gray-900">{formatCurrency(product.price)}</p>
+            <p className="text-xl font-bold text-gray-900">
+              {formatCurrency(product.price)}
+            </p>
             <p className="text-sm text-gray-500">/quantity</p>
+          </div>
+          <div className="mt-2">
+            <span className="text-sm font-medium text-gray-700">
+              Stok tersedia:{" "}
+              <span
+                className={
+                  product.stock > 0 ? "text-green-600" : "text-red-600"
+                }
+              >
+                {product.stock > 0 ? product.stock : "Habis"}
+              </span>
+            </span>
           </div>
           <button
             onClick={handleAddToCart}
@@ -428,17 +641,42 @@ export default function DetailsPage() {
           >
             {isAdding ? (
               <>
-                <svg className="h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                <svg
+                  className="h-5 w-5 animate-spin"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
                 </svg>
                 <span className="font-semibold">Adding...</span>
               </>
             ) : (
               <>
                 <span className="font-semibold">Add to Cart</span>
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m-2.4 0L3 3zM7 13L5.4 7M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H19M17 21a2 2 0 100-4 2 2 0 000 4zM9 21a2 2 0 100-4 2 2 0 000 4z" />
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4m-2.4 0L3 3zM7 13L5.4 7M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H19M17 21a2 2 0 100-4 2 2 0 000 4zM9 21a2 2 0 100-4 2 2 0 000 4z"
+                  />
                 </svg>
               </>
             )}

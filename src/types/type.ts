@@ -30,6 +30,8 @@ export interface Product {
   photos: Photo[];
   testimonials: Testimonial[];
   about: string;
+  stock: number;
+  min_order?: number;
 }
 
 export interface Category {
