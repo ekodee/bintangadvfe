@@ -5,14 +5,14 @@ import apiClient from "../services/apiServices";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 const minOrderMap: Record<string, number> = {
-    "Banner Custom": 2,
+    "Banner Custom": 1,
     "Banner Promosi Produk": 1,
     "Buku Yasin Soft Cover": 10,
     "Buku Yasin Hard Cover": 5,
     "Neon Box": 1,
     "Kartu Nama Standard": 50,
     "Kartu Nama Premium": 50,
-    "X-Banner": 2,
+    "X-Banner": 1,
     "Stempel Oval": 1,
     "Stempel Kotak": 1,
     "Sticker Label Bulat": 100,

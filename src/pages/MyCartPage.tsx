@@ -4,14 +4,14 @@ import apiClient from "../services/apiServices";
 import { Link } from "react-router-dom";
 
 const minOrderMap: Record<string, number> = {
-  "Banner Custom": 2,
+  "Banner Custom": 1,
   "Banner Promosi Produk": 1,
   "Buku Yasin Soft Cover": 10,
   "Buku Yasin Hard Cover": 5,
   "Neon Box": 1,
   "Kartu Nama Standard": 50,
   "Kartu Nama Premium": 50,
-  "X-Banner": 2,
+  "X-Banner": 1,
   "Stempel Oval": 1,
   "Stempel Kotak": 1,
   "Sticker Label Bulat": 100,
@@ -86,7 +86,7 @@ export default function MyCartPage() {
   const handleIncreaseQuantity = (slug: string) => {
     setCart((prevCart) => {
       const updatedCart = prevCart.map((item) =>
-        item.slug === slug && item.quantity < 10
+        item.slug === slug && item.quantity < 50
           ? { ...item, quantity: item.quantity + 1 }
           : item
       );
@@ -365,7 +365,7 @@ export default function MyCartPage() {
                                     onClick={() =>
                                       handleIncreaseQuantity(product.slug)
                                     }
-                                    disabled={cartItem?.quantity === 10}
+                                    disabled={cartItem?.quantity === 50}
                                     className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-50"
                                   >
                                     <svg

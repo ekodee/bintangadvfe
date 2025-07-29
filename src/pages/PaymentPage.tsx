@@ -397,7 +397,7 @@ export default function PaymentPage() {
                     />
                     <div className="flex-1">
                       <h4 className="text-sm font-medium text-gray-600">Bank Central Asia</h4>
-                      <p className="text-lg font-bold text-gray-900">9893981092</p>
+                      <p className="text-lg font-bold text-gray-900">8840728472</p>
                       <p className="text-sm text-gray-600">Suginto</p>
                     </div>
                     <button className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">
@@ -412,9 +412,9 @@ export default function PaymentPage() {
                       className="h-12 w-16 rounded-lg object-contain"
                     />
                     <div className="flex-1">
-                      <h4 className="text-sm font-medium text-gray-600">Bank Mandiri</h4>
-                      <p className="text-lg font-bold text-gray-900">193084820912</p>
-                      <p className="text-sm text-gray-600">Sugianto</p>
+                      <h4 className="text-sm font-medium text-gray-600">Bank Rakyat Indonesia</h4>
+                      <p className="text-lg font-bold text-gray-900">689301021773530</p>
+                      <p className="text-sm text-gray-600">Muhamad Safii Eko Kuncoro</p>
                     </div>
                     <button className="rounded-lg bg-yellow-600 px-4 py-2 text-sm font-semibold text-white hover:bg-yellow-700">
                       Salin
