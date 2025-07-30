@@ -238,7 +238,7 @@ export default function MyOrderDetailsPage() {
                             <span className="font-semibold">{formatCurrency(orderDetails.sub_total_amount)}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-gray-600">Pajak 11%</span>
+                            <span className="text-gray-600">Pajak 0%</span>
                             <span className="font-semibold">{formatCurrency(orderDetails.total_tax_amount)}</span>
                           </div>
                           <div className="border-t border-gray-200 pt-3">

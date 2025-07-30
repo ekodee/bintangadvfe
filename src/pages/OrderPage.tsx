@@ -73,7 +73,7 @@ ALAMAT: ${formData.address || "Belum diisi"}, ${formData.city || "Belum diisi"}
 Terima kasih!`);
 
     // Direct Gmail Compose Link
-    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=firedxd2@gmail.com&su=${subject}&body=${emailBody}`;
+    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=msafiiekokuncoro1@gmail.com&su=${subject}&body=${emailBody}`;
 
     // Coba buka Gmail langsung
     const newWindow = window.open(gmailLink, "_blank");
@@ -709,7 +709,7 @@ Terima kasih!`);
                     </svg>
                     <p className="text-sm text-blue-800">
                       Email akan dikirim ke:{" "}
-                      <span className="font-semibold">firedxd2@gmail.com</span>
+                      <span className="font-semibold">msafiiekokuncoro1@gmail.com</span>
                     </p>
                   </div>
                   <p className="mt-2 text-xs text-blue-600">

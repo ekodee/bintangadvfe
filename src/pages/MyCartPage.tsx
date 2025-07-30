@@ -126,7 +126,7 @@ export default function MyCartPage() {
   const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   // pajak
-  const tax = subtotal * 0.11;
+  const tax = subtotal * 0;
   // total
   const total = subtotal + tax;
 
@@ -533,7 +533,7 @@ export default function MyCartPage() {
                           d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
                         />
                       </svg>
-                      <span className="text-gray-600">Pajak 11%</span>
+                      <span className="text-gray-600">Pajak 0%</span>
                     </div>
                     <span className="font-semibold text-gray-900">
                       {formatCurrency(tax)}
