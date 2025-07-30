@@ -377,7 +377,7 @@ export default function MyOrderDetailsPage() {
 
                   {/* Hubungi Dukungan */}
                   <a
-                    href="tel:+1234567890"
+                    href="https://api.whatsapp.com/send?phone=6285743275318&text=Halo%20Bintang%20Adv%2C%20saya%20membutuhkan%20bantuan%20terkait%20pesanan%20saya."
                     className="group flex w-full items-center justify-center space-x-2 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-4 text-white transition-all duration-200 hover:from-indigo-700 hover:to-purple-700 hover:shadow-lg hover:shadow-indigo-500/25"
                   >
                     <span className="font-semibold">Hubungi Pusat Layanan</span>
