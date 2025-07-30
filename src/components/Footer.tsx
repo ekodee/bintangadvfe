@@ -1,6 +1,6 @@
 export default function Footer() {
   const handleWhatsAppClick = () => {
-    const phoneNumber = "62895322733213"; // Nomor WhatsApp yang sama dengan yang ada di footer
+    const phoneNumber = "6285743275318"; // Nomor WhatsApp yang sama dengan yang ada di footer
     const message = encodeURIComponent("Halo! Saya tertarik dengan layanan percetakan Bintang Advertising. Bisa bantu saya?");
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappUrl, "_blank");
@@ -271,7 +271,7 @@ export default function Footer() {
                       href="https://wa.me/6285743275318"
                       className="hover:text-white transition-colors"
                     >
-                      +62 895-3227-33213
+                      +62 8574 3275 318
                     </a>
                   </div>
                   <div className="flex items-center space-x-3">
