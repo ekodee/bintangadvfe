@@ -333,56 +333,34 @@ export default function MyCartPage() {
                             {/* Kontrol Jumlah */}
                             <div className="flex items-center justify-between">
                               <div className="flex items-center space-x-3">
-                                <span className="text-sm text-gray-600">
-                                  Jumlah:
-                                </span>
-                                <div className="flex items-center space-x-1 rounded-full bg-gray-100 p-1">
-                                  <button
-                                    onClick={() =>
-                                      handleDecreaseQuantity(product.slug)
-                                    }
-                                    disabled={cartItem?.quantity === 1}
-                                    className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-50"
-                                  >
-                                    <svg
-                                      className="h-4 w-4"
-                                      fill="none"
-                                      viewBox="0 0 24 24"
-                                      stroke="currentColor"
-                                    >
-                                      <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M20 12H4"
-                                      />
-                                    </svg>
-                                  </button>
-                                  <span className="min-w-[2rem] text-center text-sm font-semibold">
-                                    {cartItem?.quantity || 1}
-                                  </span>
-                                  <button
-                                    onClick={() =>
-                                      handleIncreaseQuantity(product.slug)
-                                    }
-                                    disabled={cartItem?.quantity === 50}
-                                    className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-50"
-                                  >
-                                    <svg
-                                      className="h-4 w-4"
-                                      fill="none"
-                                      viewBox="0 0 24 24"
-                                      stroke="currentColor"
-                                    >
-                                      <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                                      />
-                                    </svg>
-                                  </button>
-                                </div>
+                                <span className="text-sm text-gray-600">Jumlah:</span>
+                                <input
+                                  type="number"
+                                  min={product.min_order || 1}
+                                  max={50}
+                                  value={cartItem?.quantity || product.min_order || 1}
+                                  onChange={(e) => {
+                                    const value = Math.max(product.min_order || 1, Math.min(50, Number(e.target.value)));
+                                    setCart((prevCart) =>
+                                      prevCart.map((item) =>
+                                        item.product_id === product.id
+                                          ? { ...item, quantity: value }
+                                          : item
+                                      )
+                                    );
+                                    localStorage.setItem(
+                                      "cart",
+                                      JSON.stringify(
+                                        cart.map((item) =>
+                                          item.product_id === product.id
+                                            ? { ...item, quantity: value }
+                                            : item
+                                        )
+                                      )
+                                    );
+                                  }}
+                                  className="w-16 rounded border border-gray-300 px-2 py-1 text-center text-sm"
+                                />
                               </div>
                               <div className="text-right">
                                 <p className="text-lg font-bold text-gray-900">
@@ -496,26 +474,6 @@ export default function MyCartPage() {
                     <span className="font-semibold text-gray-900">
                       {formatCurrency(subtotal)}
                     </span>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <svg
-                        className="h-5 w-5 text-gray-400"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
-                        />
-                      </svg>
-                      <span className="text-gray-600">Kode Diskon</span>
-                    </div>
-                    <span className="font-semibold text-gray-900">Rp 0</span>
                   </div>
 
                   <div className="flex items-center justify-between">
