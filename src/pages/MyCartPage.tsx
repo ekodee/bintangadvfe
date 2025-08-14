@@ -83,30 +83,10 @@ export default function MyCartPage() {
 
   // menambah item dari keranjang
   // dibatasi hanya boleh menambah 10 item saja
-  const handleIncreaseQuantity = (slug: string) => {
-    setCart((prevCart) => {
-      const updatedCart = prevCart.map((item) =>
-        item.slug === slug && item.quantity < 50
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      );
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-      return updatedCart;
-    });
-  };
+  
 
   // mengurangi item dari keranjang
-  const handleDecreaseQuantity = (slug: string) => {
-    setCart((prevCart) => {
-      const updatedCart = prevCart.map((item) =>
-        item.slug === slug && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      );
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-      return updatedCart;
-    });
-  };
+
 
   // menghapus item dari keranjang
   const handleRemoveItem = (slug: string) => {
